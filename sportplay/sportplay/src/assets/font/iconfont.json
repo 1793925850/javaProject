@@ -1,0 +1,149 @@
+{
+  "id": "4130367",
+  "name": "vue",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "36050152",
+      "name": "船",
+      "font_class": "chuan",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "36050153",
+      "name": "路标",
+      "font_class": "lubiao",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "36050154",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "36050155",
+      "name": "救生圈",
+      "font_class": "jiushengquan",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "36050156",
+      "name": "日历",
+      "font_class": "rili",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "36050157",
+      "name": "邮轮",
+      "font_class": "youlun",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "36050158",
+      "name": "环球",
+      "font_class": "huanqiu",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "36050159",
+      "name": "车",
+      "font_class": "che",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "36050160",
+      "name": "位置",
+      "font_class": "weizhi",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "36050161",
+      "name": "飞机",
+      "font_class": "feiji",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "36050162",
+      "name": "旅行箱",
+      "font_class": "lvhangxiang",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "36050163",
+      "name": "天气",
+      "font_class": "tianqi",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "36050164",
+      "name": "伞",
+      "font_class": "san",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "36050165",
+      "name": "帐篷",
+      "font_class": "zhangpeng",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "36050166",
+      "name": "饮料",
+      "font_class": "yinliao",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "36050167",
+      "name": "椰树",
+      "font_class": "yeshu",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "36050168",
+      "name": "相机",
+      "font_class": "xiangji",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "36050169",
+      "name": "指南针",
+      "font_class": "zhinanzhen",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "36050170",
+      "name": "建筑",
+      "font_class": "jianzhu",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "36050171",
+      "name": "泳镜",
+      "font_class": "yongjing",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    }
+  ]
+}

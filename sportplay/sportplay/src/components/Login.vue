@@ -10,11 +10,11 @@
           <el-form ref="loginFormRef" :model="loginForm" class="login_form" label-width="0px">
               <!--用户名-->
               <el-form-item>
-                  <el-input v-model="loginForm.username"></el-input>
+                  <el-input v-model="loginForm.username" prefix-icon="iconfont icon-youlun"></el-input>
               </el-form-item>
               <!--密码-->
               <el-form-item>
-                  <el-input v-model="loginForm.password"></el-input>
+                  <el-input v-model="loginForm.password" prefix-icon="iconfont icon-huanqiu"></el-input>
               </el-form-item>
               <!--按钮-->
               <el-form-item class="btns">
@@ -30,8 +30,8 @@ export default {
     data() {
         return {
             loginForm:{
-                username:"username",
-                password:"password",
+                username:"jinxiao",
+                password:"111111",
             }
         }
     }
