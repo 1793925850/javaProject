@@ -59,7 +59,7 @@ export default {
 
         // 获取导航菜单
         getMenuList() {
-
+            console.log("getMenuList");
         },
     }
 }
