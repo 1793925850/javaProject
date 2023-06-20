@@ -32,7 +32,9 @@
                 </el-menu>
             </el-aside>
             <!--主体内容-->
-            <el-main>Main</el-main>
+            <el-main>Main
+                {{ menuList }}
+            </el-main>
         </el-container>
     </el-container>
 </template>
@@ -61,6 +63,8 @@ export default {
         async getMenuList() {
             const {data: res} = await this.$http.get("menus");
             console.log(res);
+            if (res.flag != 200) return this.$message.error("获取列表失败");
+            this.menuList = res.menus; // 访问成功，数据回填
         },
     }
 }
