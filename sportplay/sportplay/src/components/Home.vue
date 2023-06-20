@@ -12,7 +12,25 @@
         <!--主体-->
         <el-container>
             <!--侧边栏-->
-            <el-aside width="200px">Aside</el-aside>
+            <el-aside width="200px">
+                <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409eff">
+                    <!--一级菜单-->
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span>导航一</span>
+                        </template>
+                        <!--二级菜单-->
+                        <el-menu-item index="1-1">
+                            <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>111</span>
+                            </template>
+                        </el-menu-item>
+                    </el-submenu>
+
+                </el-menu>
+            </el-aside>
             <!--主体内容-->
             <el-main>Main</el-main>
         </el-container>
@@ -20,12 +38,29 @@
 </template>
 <script>
 export default {
+    data() {
+        return {
+            // 菜单列表
+            menuList: [],
+        }
+    },
+
+    // 页面一加载，就发生的事件
+    created() {
+        // 查询menuList
+        this.getMenuList();
+    },
     methods: {
         // 安全退出
         logout() {
             window.sessionStorage.clear(); // 清楚session
             this.$router.push("/login"); // 返回登录页
-        }
+        },
+
+        // 获取导航菜单
+        getMenuList() {
+
+        },
     }
 }
 </script>
