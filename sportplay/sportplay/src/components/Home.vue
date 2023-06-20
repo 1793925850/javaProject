@@ -4,7 +4,7 @@
         <!--头部-->
         <el-header>
             <div>
-                <img src="../assets/logo.png" alt="">
+                <img src="../assets/logo2.png" alt="">
                 <span>个人运动平台</span>
             </div>
             <el-button type="info" @click="logout">安全退出</el-button>
