@@ -58,8 +58,9 @@ export default {
         },
 
         // 获取导航菜单
-        getMenuList() {
-            console.log("getMenuList");
+        async getMenuList() {
+            const {data: res} = await this.$http.get("menus");
+            console.log(res);
         },
     }
 }
