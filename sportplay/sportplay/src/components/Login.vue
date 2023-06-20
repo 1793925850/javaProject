@@ -65,7 +65,7 @@ export default {
                 if (res.flag === "ok") {
                     this.$message.success("登录成功"); // 信息提示
                     this.$router.push({path: "/home"}); // 页面路由跳转
-                    console.log(res.user);
+                    window.sessionStorage.setItem("user", res.user); // 存储user对象
                 } else {
                     this.$message.error("操作失败"); // 错误提示
                 }
