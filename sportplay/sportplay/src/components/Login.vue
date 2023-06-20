@@ -56,16 +56,16 @@ export default {
             this.$refs.loginFormRef.resetFields();
         },
         // 登录
-        login(){
+        login() {
             // 1. 验证校验规则
             this.$refs.loginFormRef.validate(async valid => {
-                if(!valid) // 验证失败
+                if (!valid) // 验证失败
                     return;
-                const {data:res} = await this.$http.post("test"); // 访问后台
-                if(res == "ok"){
+                const {data: res} = await this.$http.post("login", this.loginForm); // 访问后台
+                if (res === "ok") {
                     this.$message.success("登录成功"); // 信息提示
                     this.$router.push({path: "/home"}); // 页面路由跳转
-                }else{
+                } else {
                     this.$message.error("操作失败"); // 错误提示
                 }
             })
