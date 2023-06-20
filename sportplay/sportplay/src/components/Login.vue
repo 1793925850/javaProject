@@ -100,7 +100,7 @@ export default {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #0ee;
+    background-color: #990055;
 
     img {
       width: 100%;
