@@ -40,7 +40,7 @@ export default {
     methods: {
         // 获取用户列表
         getUserList() {
-
+            console.log(123);
         },
 
         addDialogVisible() {
