@@ -19,7 +19,8 @@
                 </div>
 
                 <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409eff" unique-opened
-                         :collapse="isCollapse" :collapse-transition="false" :router="true">
+                         :collapse="isCollapse" :collapse-transition="false" :router="true"
+                         :default-active="activePath">
                     <!--一级菜单-->
                     <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
                         <template slot="title">
@@ -27,7 +28,8 @@
                             <span>{{ item.title }}</span>
                         </template>
                         <!--二级菜单-->
-                        <el-menu-item :index="it.path" v-for="it in item.sList" :key="it.id">
+                        <el-menu-item :index="it.path" v-for="it in item.sList" :key="it.id"
+                                      @click="saveNavState(it.path)">
                             <template slot="title">
                                 <i :class="iconsObject[it.id]"></i>
                                 <span>{{ it.title }}</span>
@@ -63,6 +65,7 @@ export default {
                 '203': 'iconfont icon-feiji',
                 '204': 'iconfont icon-lvhangxiang',
             },
+            activePath: '/welcome', // 默认路径
         }
     },
 
@@ -70,6 +73,7 @@ export default {
     created() {
         // 查询menuList
         this.getMenuList();
+        this.activePath = window.sessionStorage.getItem('activePath'); // 取出session里的path，动态修改activePath
     },
     methods: {
         // 安全退出
@@ -90,6 +94,12 @@ export default {
         toggleCollapase() {
             this.isCollapse = !this.isCollapse;
         },
+
+        // 保存路径
+        saveNavState(activePath) {
+            window.sessionStorage.setItem('activePath', activePath); // 存放在session里
+            this.activePath = activePath;
+        },
     }
 }
 </script>
@@ -104,6 +114,7 @@ export default {
   display: flex;
   justify-content: space-between; // 左右贴边
   padding-left: 0%; // 左边界
+  align-items: center;
   color: #fff;
   font-size: 20px;
 
