@@ -53,6 +53,20 @@
                 </el-table-column>
             </el-table>
 
+            <!--分页组件-->
+            <div>
+                <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="queryInfo.pageNum"
+                        :page-sizes="[1, 2, 5, 10]"
+                        :page-size="queryInfo.pageSize"
+                        layout="total, sizes, prev, pager, next, jumper"
+                        :total="total">
+                </el-pagination>
+            </div>
+
+
         </el-card>
     </div>
 </template>
@@ -80,12 +94,24 @@ export default {
         // 获取用户列表
         async getUserList() {
             const {data: res} = await this.$http.get("alluser", {params: this.queryInfo});
-            this.userList = res.data;
-            this.total = res.number;
+            this.userList = res.data; // 用户列表数据封装
+            this.total = res.numbers; // 总用户数封装
         },
 
         addDialogVisible() {
 
+        },
+
+        // 最大数
+        handleSizeChange(newSize) {
+            this.queryInfo.pageSize = newSize;
+            this.getUserList();
+        },
+
+        // pageNum的触发动作
+        handleCurrentChange(newPage) {
+            this.queryInfo.pageNum = newPage;
+            this.getUserList();
         },
     },
 }
