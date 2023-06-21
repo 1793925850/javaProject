@@ -15,16 +15,16 @@
             <el-aside width="200px">
                 <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409eff">
                     <!--一级菜单-->
-                    <el-submenu index="1">
+                    <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
                         <template slot="title">
                             <i class="el-icon-location"></i>
-                            <span>导航一</span>
+                            <span>{{ item.title }}</span>
                         </template>
                         <!--二级菜单-->
-                        <el-menu-item index="1-1">
+                        <el-menu-item :index="it.id+''" v-for="it in item.sList" :key="it.id">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
-                                <span>111</span>
+                                <span>{{ it.title }}</span>
                             </template>
                         </el-menu-item>
                     </el-submenu>
@@ -33,7 +33,6 @@
             </el-aside>
             <!--主体内容-->
             <el-main>Main
-                {{ menuList }}
             </el-main>
         </el-container>
     </el-container>
