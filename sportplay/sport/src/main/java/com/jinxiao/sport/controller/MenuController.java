@@ -14,7 +14,7 @@ import java.util.List;
 public class MenuController {
 
     @Autowired
-    MenuDao menuDao;
+    MenuDao menuDao; // 使用Autowired注解，就不用new了，这个注解会帮我们new一个对象，从而可以使用它的类方法
 
     @RequestMapping("/menus")
     public String getAllMenus() {
