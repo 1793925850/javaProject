@@ -1,6 +1,11 @@
 /*全局样式*/
-html,body,#app{
+html, body, #app {
     height: 100%;
     margin: 0px;
     padding: 0px;
+}
+
+/* 卡片区域  !important 提高样式级别 */
+.el-card {
+    box-shadow: 0 1px 1px rgba(0, 8, 10, 0.15) !important;
 }
