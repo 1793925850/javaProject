@@ -23,6 +23,10 @@
                 </el-col>
             </el-row>
 
+            <span>
+                {{ userList }}
+            </span>
+
         </el-card>
     </div>
 </template>
@@ -34,13 +38,24 @@ export default {
     },
 
     data() {
-        return {}
+        return {
+            // 查询信息实体
+            queryInfo: {
+                query: "",
+                pageNum: 1,
+                pageSize: 5,
+            },
+            userList: [], // 用户列表
+            total: 0, // 总记录数
+        }
     },
 
     methods: {
         // 获取用户列表
-        getUserList() {
-            console.log(123);
+        async getUserList() {
+            const {data: res} = await this.$http.get("alluser", {params: this.queryInfo});
+            this.userList = res.data;
+            this.total = res.number;
         },
 
         addDialogVisible() {
