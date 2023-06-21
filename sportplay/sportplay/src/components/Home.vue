@@ -12,24 +12,30 @@
         <!--主体-->
         <el-container>
             <!--侧边栏-->
-            <el-aside width="200px">
-                <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409eff">
+            <el-aside :width="isCollapse?'64px':'200px'">
+
+                <div class="toggle-button" @click="toggleCollapase">
+                    |||
+                </div>
+
+                <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409eff" unique-opened
+                         :collapse="isCollapse" :collapse-transition="false">
                     <!--一级菜单-->
                     <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
                         <template slot="title">
-                            <i class="el-icon-location"></i>
+                            <i :class="iconsObject[item.id]"></i>
                             <span>{{ item.title }}</span>
                         </template>
                         <!--二级菜单-->
                         <el-menu-item :index="it.id+''" v-for="it in item.sList" :key="it.id">
                             <template slot="title">
-                                <i class="el-icon-location"></i>
+                                <i :class="iconsObject[it.id]"></i>
                                 <span>{{ it.title }}</span>
                             </template>
                         </el-menu-item>
                     </el-submenu>
-
                 </el-menu>
+
             </el-aside>
             <!--主体内容-->
             <el-main>Main
@@ -43,6 +49,19 @@ export default {
         return {
             // 菜单列表
             menuList: [],
+            isCollapse: false,
+            iconsObject: {
+                '100': 'iconfont icon-chuan',
+                '200': 'iconfont icon-lubiao',
+                '101': 'iconfont icon-tupian',
+                '102': 'iconfont icon-jiushengquan',
+                '103': 'iconfont icon-rili',
+                '104': 'iconfont icon-youlun',
+                '201': 'iconfont icon-huanqiu',
+                '202': 'iconfont icon-weizhi',
+                '203': 'iconfont icon-feiji',
+                '204': 'iconfont icon-lvhangxiang',
+            },
         }
     },
 
@@ -64,6 +83,11 @@ export default {
             console.log(res);
             if (res.flag != 200) return this.$message.error("获取列表失败");
             this.menuList = res.menus; // 访问成功，数据回填
+        },
+
+        // 控制伸缩
+        toggleCollapase() {
+            this.isCollapse = !this.isCollapse;
         },
     }
 }
@@ -96,6 +120,21 @@ export default {
 // 侧边样式
 .el-aside {
   background-color: #333744;
+
+  .el-menu {
+    border-right: none;
+  }
+
+  // |||按钮样式
+  .toggle-button {
+    background-color: #97614f;
+    font-size: 10px;
+    line-height: 24px;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.2em;
+    cursor: pointer; // 鼠标在范围内时变成一双小手
+  }
 }
 
 // 主体样式
