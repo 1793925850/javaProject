@@ -39,11 +39,12 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="操作">
-                    <template>
+                    <template slot-scope="scope">
                         <!-- 修改 -->
                         <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
                         <!-- 删除 -->
-                        <el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
+                        <el-button type="danger" icon="el-icon-delete" size="mini"
+                                   @click="deleteUser(scope.row.id)"></el-button>
                         <!-- 权限 -->
                         <el-tooltip effect="dark" content="分配权限" placement="top-start" :enterable="false">
                             <!--文字提示 enterable 隐藏-->
@@ -163,6 +164,24 @@ export default {
                 this.addDialogVisible = false;
                 await this.getUserList();
             });
+        },
+
+        // 根据主键删除用户
+        async deleteUser(id) {
+            const confirmResult = await this.$confirm("此操作将永久删除用户，是否继续？", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning",
+            }).catch(err => err)
+            if (confirmResult !== "confirm") { // 取消
+                return this.$message.info("已取消删除");
+            }
+            const {data: res} = await this.$http.delete("deleteuser?id=" + id);
+            if (res !== "success") {
+                return this.$message.error("删除失败");
+            }
+            this.$message.success("删除成功");
+            await this.getUserList();
         },
 
         // 最大数

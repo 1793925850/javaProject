@@ -48,4 +48,11 @@ public class UserController {
         int i = udao.addUser(user);
         return i > 0 ? "success" : "error";
     }
+
+    @RequestMapping("/deleteuser")
+    public String deleteUser(int id) {
+        int i = udao.deleteUser(id);
+
+        return i > 0 ? "success" : "error";
+    }
 }

@@ -34,4 +34,10 @@
         INSERT INTO easyuser (username, password, email, role, state)
             VALUE (#{username}, #{password}, #{email}, #{role}, #{state})
     </insert>
+
+    <delete id="deleteUser">
+        DELETE
+        FROM easyuser
+        WHERE id = #{id}
+    </delete>
 </mapper>
