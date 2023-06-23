@@ -66,8 +66,28 @@
                 </el-pagination>
             </div>
 
-
         </el-card>
+
+        <!--新增用户区域-->
+        <el-dialog title="添加用户" :visible.sync="addDialogVisible" width="50%" @close="addDialogClosed">
+            <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
+                <el-form-item label="用户名" prop="username">
+                    <el-input v-model="addForm.username"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password">
+                    <el-input v-model="addForm.password"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" prop="email">
+                    <el-input v-model="addForm.email"></el-input>
+                </el-form-item>
+            </el-form>
+            <!--内容底部区域-->
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="addDialogVisible=false">取消</el-button>
+                <el-button type="primary" @click="addUser">确定</el-button>
+            </span>
+        </el-dialog>
+
     </div>
 </template>
 
@@ -85,8 +105,33 @@ export default {
                 pageNum: 1,
                 pageSize: 10,
             },
-            userList: [], // 用户列表
-            total: 0, // 总记录数
+            // 用户列表
+            userList: [],
+            // 总记录数
+            total: 0,
+            // 对话框状态
+            addDialogVisible: false,
+            // 添加表单
+            addForm: {
+                username: "",
+                password: "",
+                email: "",
+            },
+            // 表单验证
+            addFormRules: {
+                username: [
+                    {required: true, message: '请输入用户名', trigger: 'blur'},
+                    {min: 5, max: 20, message: '长度在 5 ~ 20 个字符', trigger: 'blur'}
+                ],
+                password: [
+                    {required: true, message: '请输入密码', trigger: 'blur'},
+                    {min: 6, max: 20, message: '长度在 6 ~ 20 个字符', trigger: 'blur'}
+                ],
+                email: [
+                    {required: true, message: '请输入邮箱', trigger: 'blur'},
+                    {min: 5, max: 15, message: '请输入正确邮箱地址', trigger: 'blur'}
+                ],
+            },
         }
     },
 
@@ -98,8 +143,26 @@ export default {
             this.total = res.numbers; // 总用户数封装
         },
 
-        addDialogVisible() {
+        // addDialogVisible() {
+        //
+        // },
 
+        // 监听添加用户
+        addDialogClosed() {
+            this.$refs.addFormRef.resetFields();
+        },
+
+        addUser() {
+            this.$refs.addFormRef.validate(async valid => {
+                if (!valid) return;
+                const {data: res} = await this.$http.post("adduser", this.addForm);
+                if (res !== "success") {
+                    return this.$message.error("操作失败");
+                }
+                this.$message.success("操作成功");
+                this.addDialogVisible = false;
+                await this.getUserList();
+            });
         },
 
         // 最大数
