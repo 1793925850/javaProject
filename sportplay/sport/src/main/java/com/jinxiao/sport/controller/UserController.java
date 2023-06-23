@@ -6,6 +6,7 @@ import com.jinxiao.sport.bean.User;
 import com.jinxiao.sport.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -29,5 +30,13 @@ public class UserController {
         res.put("data", users);
 
         return JSON.toJSONString(res);
+    }
+
+    @RequestMapping("/userstate")
+    public String updateUserState(@RequestParam("id") Integer id,
+                                  @RequestParam("state") Boolean state) {
+        int i = udao.updateState(id, state);
+
+        return i > 0 ? "success" : "error";
     }
 }
