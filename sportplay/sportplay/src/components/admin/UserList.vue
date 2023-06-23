@@ -41,7 +41,8 @@
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <!-- 修改 -->
-                        <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                        <el-button type="primary" icon="el-icon-edit" size="mini"
+                                   @click="showUpdateDialog(scope.row.id)"></el-button>
                         <!-- 删除 -->
                         <el-button type="danger" icon="el-icon-delete" size="mini"
                                    @click="deleteUser(scope.row.id)"></el-button>
@@ -89,6 +90,26 @@
             </span>
         </el-dialog>
 
+        <!--修改对话框-->
+        <el-dialog title="修改用户" :visible.sync="updateDialogVisible" width="50%" @close="updateDialogClosed">
+            <el-form :model="updateForm" :rules="updateFormRules" ref="updateFormRef" label-width="70px">
+                <el-form-item label="用户名" prop="username">
+                    <el-input v-model="updateForm.username" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password">
+                    <el-input v-model="updateForm.password"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" prop="email">
+                    <el-input v-model="updateForm.email"></el-input>
+                </el-form-item>
+            </el-form>
+            <!--内容底部区域-->
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="updateDialogVisible=false">取消</el-button>
+                <el-button type="primary" @click="updateUser">确定</el-button>
+            </span>
+        </el-dialog>
+
     </div>
 </template>
 
@@ -133,6 +154,21 @@ export default {
                     {min: 5, max: 15, message: '请输入正确邮箱地址', trigger: 'blur'}
                 ],
             },
+            // 修改用户信息
+            updateForm: {},
+            // 显示/隐藏修改用户栏
+            updateDialogVisible: false,
+            // 修改的表单验证
+            updateFormRules: {
+                password: [
+                    {required: true, message: '请输入密码', trigger: 'blur'},
+                    {min: 6, max: 20, message: '长度在 6 ~ 20 个字符', trigger: 'blur'}
+                ],
+                email: [
+                    {required: true, message: '请输入邮箱', trigger: 'blur'},
+                    {min: 5, max: 15, message: '请输入正确邮箱地址', trigger: 'blur'}
+                ],
+            },
         }
     },
 
@@ -147,6 +183,32 @@ export default {
         // addDialogVisible() {
         //
         // },
+
+        // 显示对话框
+        async showUpdateDialog(id) {
+            const {data: res} = await this.$http.get("getupdateuser?id=" + id);
+            this.updateForm = res; // 查询到的用户信息反填回编辑表单
+            this.updateDialogVisible = true; // 开启编辑对话框
+        },
+
+        // 关闭窗口
+        updateDialogClosed() {
+            this.$refs.updateFormRef.resetFields(); // 关闭窗口重置信息
+        },
+
+        // 确认修改
+        updateUser() {
+            this.$refs.updateFormRef.validate(async valid => {
+                if (!valid) return;
+                // 验证成功，发起请求
+                const {data: res} = await this.$http.put("updateuser", this.updateForm);
+                if (res !== "success") return this.$message.error("修改失败");
+                this.$message.success("修改成功");
+                // 修改的对话框隐藏
+                this.updateDialogVisible = false;
+                await this.getUserList();
+            })
+        },
 
         // 监听添加用户
         addDialogClosed() {
@@ -216,6 +278,4 @@ export default {
   margin-bottom: 15px;
   font-size: 17px;
 }
-
-
 </style>

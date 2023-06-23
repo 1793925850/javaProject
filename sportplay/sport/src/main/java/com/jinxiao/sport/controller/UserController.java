@@ -63,7 +63,7 @@ public class UserController {
         return JSON.toJSONString(user);
     }
 
-    @RequestMapping("updateuser")
+    @RequestMapping("/updateuser")
     public String updateUser(@RequestBody User user) {
         int i = udao.updateUser(user);
 
