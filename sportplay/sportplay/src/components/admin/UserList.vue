@@ -13,7 +13,7 @@
             <el-row :gutter="25">
                 <!-- 搜索添加 -->
                 <el-col :span="10">
-                    <el-input placeholder="请输入搜索内容">
+                    <el-input placeholder="请输入搜索内容" v-model="queryInfo.query" clearable @clear="getUserList">
                         <el-button slot="append" icon="el-icon-search" @click="getUserList"></el-button>
                     </el-input>
                 </el-col>
