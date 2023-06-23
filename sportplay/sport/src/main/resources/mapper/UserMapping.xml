@@ -40,4 +40,18 @@
         FROM easyuser
         WHERE id = #{id}
     </delete>
+
+    <select id="getUpdateUser" resultType="com.jinxiao.sport.bean.User">
+        SELECT *
+        FROM easyuser
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateUser">
+        UPDATE easyuser
+        SET username=#{username},
+            password=#{password},
+            email=#{email}
+        WHERE id = #{id}
+    </update>
 </mapper>

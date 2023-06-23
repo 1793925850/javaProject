@@ -55,4 +55,18 @@ public class UserController {
 
         return i > 0 ? "success" : "error";
     }
+
+    @RequestMapping("/getupdateuser")
+    public String getUpdateUser(int id) {
+        User user = udao.getUpdateUser(id);
+
+        return JSON.toJSONString(user);
+    }
+
+    @RequestMapping("updateuser")
+    public String updateUser(@RequestBody User user) {
+        int i = udao.updateUser(user);
+
+        return i > 0 ? "success" : "error";
+    }
 }
